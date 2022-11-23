@@ -7,47 +7,37 @@
 
 import SwiftUI
 
-
 struct ContentView: View {
     enum FormSelectedField: Hashable{
         case name
         case email
         case password
-        case confirmPassword
+        case passwordComfirm
     }
 
     // MARK: View State
     @State var name = ""
     @State var email = ""
     @State var passwoord = ""
-    @State var confirmPassowrd = ""
+    @State var passowrdComfirm = ""
     @FocusState private var focusField: FormSelectedField?
 
     var body: some View {
         VStack {
             Spacer()
-                .frame(height: 40)
+                .frame(height: 10)
             Image("Logo")
                 .padding(.bottom)
             Text("SHRINE")
                 .font(.title)
                 .fontWeight(.heavy)
             Spacer()
-                .frame(height: 50)
+                .frame(height: 10)
             VStack(alignment: .leading){
                 // Name
                 Text("name")
                 TextField("name", text: $name)
-                    .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 20))
-                    .overlay{
-                        if focusField == .name{
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color("primary"))
-                        }else{
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke()
-                        }
-                    }
+                    .textFieldStyle(OutLinedTextFieldStyle(focusField: focusField == .name))
                     .focused($focusField, equals: .name)
                     .submitLabel(.next)
                     .disableAutocorrection(true)
@@ -55,16 +45,7 @@ struct ContentView: View {
                 // Email
                 Text("Email")
                 TextField("Email", text: $email)
-                    .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 20))
-                    .overlay{
-                        if focusField == .email{
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color("primary"))
-                        }else{
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke()
-                        }
-                    }
+                    .textFieldStyle(OutLinedTextFieldStyle(focusField: focusField == .email))
                     .focused($focusField, equals: .email)
                     .submitLabel(.next)
                     .disableAutocorrection(true)
@@ -73,32 +54,15 @@ struct ContentView: View {
                 // password
                 Text("Password")
                 SecureField("password", text: $passwoord)
-                    .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 20))
-                    .overlay{
-                        if focusField == .password{
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color("primary"))
-                        }else{
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke()
-                        }
-                    }
+                    .textFieldStyle(OutLinedTextFieldStyle(focusField: focusField == .password))
                     .focused($focusField, equals: .password)
                     .submitLabel(.next)
                 // Confirm Password
                 Text("Confirm Password")
-                SecureField("Confirm Password", text: $confirmPassowrd)
-                    .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 20))
-                    .overlay{
-                        if focusField == .confirmPassword{
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color("primary"))
-                        }else{
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke()
-                        }
-                    }
-                    .focused($focusField, equals: .confirmPassword)
+                SecureField("Confirm Password", text: $passowrdComfirm)
+                    
+                    .textFieldStyle(OutLinedTextFieldStyle(focusField: focusField == .passwordComfirm))
+                    .focused($focusField, equals: .passwordComfirm)
                     .submitLabel(.done)
             }
             .onSubmit {
@@ -108,7 +72,7 @@ struct ContentView: View {
                 case .email:
                     focusField = .password
                 case .password:
-                    focusField = .confirmPassword
+                    focusField = .passwordComfirm
                 default:
                     focusField = nil
                 }
@@ -116,7 +80,7 @@ struct ContentView: View {
             .frame(maxWidth: .infinity)
             .padding()
             Spacer()
-                .frame(height: 50)
+                .frame(height: 5)
             // Sign Up
             Text("Sign up")
                 .padding(EdgeInsets(top: 10, leading: 100, bottom: 10, trailing: 100))
