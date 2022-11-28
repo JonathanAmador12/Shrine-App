@@ -14,13 +14,8 @@ struct ContentView: View {
         case password
         case passwordComfirm
     }
-
-    // MARK: View State
-    @State var name = ""
-    @State var email = ""
-    @State var passwoord = ""
-    @State var passowrdComfirm = ""
     @FocusState private var focusField: FormSelectedField?
+    @ObservedObject var signUpVM = SignUpVM()
 
     var body: some View {
         VStack {
@@ -34,36 +29,55 @@ struct ContentView: View {
             Spacer()
                 .frame(height: 10)
             VStack(alignment: .leading){
-                // Name
-                Text("name")
-                TextField("name", text: $name)
-                    .textFieldStyle(OutLinedTextFieldStyle(focusField: focusField == .name))
-                    .focused($focusField, equals: .name)
-                    .submitLabel(.next)
-                    .disableAutocorrection(true)
-                    
-                // Email
-                Text("Email")
-                TextField("Email", text: $email)
-                    .textFieldStyle(OutLinedTextFieldStyle(focusField: focusField == .email))
-                    .focused($focusField, equals: .email)
-                    .submitLabel(.next)
-                    .disableAutocorrection(true)
-                    .autocapitalization(.none)
-                    .keyboardType(.emailAddress)
-                // password
-                Text("Password")
-                SecureField("password", text: $passwoord)
-                    .textFieldStyle(OutLinedTextFieldStyle(focusField: focusField == .password))
-                    .focused($focusField, equals: .password)
-                    .submitLabel(.next)
-                // Confirm Password
-                Text("Confirm Password")
-                SecureField("Confirm Password", text: $passowrdComfirm)
-                    
-                    .textFieldStyle(OutLinedTextFieldStyle(focusField: focusField == .passwordComfirm))
-                    .focused($focusField, equals: .passwordComfirm)
-                    .submitLabel(.done)
+                // MARK: Name section
+                Group{
+                    TextField("name", text: $signUpVM.name)
+                        .textFieldStyle(OutLinedTextFieldStyle(focusField: focusField == .name))
+                        .focused($focusField, equals: .name)
+                        .submitLabel(.next)
+                        .disableAutocorrection(true)
+                    if let error = signUpVM.nameError{
+                        Text(error)
+                            .foregroundColor(.red)
+                    }
+                }
+                // MARK: Email sectioon
+                Group{
+                    TextField("Email", text: $signUpVM.email)
+                        .textFieldStyle(OutLinedTextFieldStyle(focusField: focusField == .email))
+                        .focused($focusField, equals: .email)
+                        .submitLabel(.next)
+                        .disableAutocorrection(true)
+                        .autocapitalization(.none)
+                        .keyboardType(.emailAddress)
+                    if let error = signUpVM.emailError{
+                        Text(error)
+                            .foregroundColor(.red)
+                    }
+                }
+                // MARK: Password section
+                Group{
+                    SecureField("password", text: $signUpVM.password)
+                        .textFieldStyle(OutLinedTextFieldStyle(focusField: focusField == .password))
+                        .focused($focusField, equals: .password)
+                        .submitLabel(.next)
+                    if let error = signUpVM.passwordError{
+                        Text(error)
+                            .foregroundColor(.red)
+                    }
+                }
+                
+                // MARK: Password confirmation section
+                Group{
+                    SecureField("Confirm Password", text: $signUpVM.comfirmPassword)
+                        .textFieldStyle(OutLinedTextFieldStyle(focusField: focusField == .passwordComfirm))
+                        .focused($focusField, equals: .passwordComfirm)
+                        .submitLabel(.done)
+                    if let error = signUpVM.passoworComfirmationError{
+                        Text(error)
+                            .foregroundColor(.red)
+                    }
+                }
             }
             .onSubmit {
                 switch focusField{
@@ -82,14 +96,20 @@ struct ContentView: View {
             Spacer()
                 .frame(height: 5)
             // Sign Up
-            Text("Sign up")
-                .padding(EdgeInsets(top: 10, leading: 100, bottom: 10, trailing: 100))
-                .background(Color("primary"))
-                .font(.title2)
-                .overlay{
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke()
-                }
+            Button(action: {
+                signUpVM.validateAllField()
+            }) {
+                Text("Sign up")
+                    .padding(EdgeInsets(top: 10, leading: 100, bottom: 10, trailing: 100))
+                    .foregroundColor(Color("tertiaryColor"))
+                    .background(Color("primary"))
+                    .font(.title2)
+                    .overlay{
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke()
+                            .foregroundColor(Color("tertiaryColor"))
+                    }
+            }
             Spacer()
         }
     }
