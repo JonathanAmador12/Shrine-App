@@ -11,6 +11,8 @@
 		B41496CE292808D1006DE3EC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41496CD292808D1006DE3EC /* ContentView.swift */; };
 		B41496D0292808D2006DE3EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B41496CF292808D2006DE3EC /* Assets.xcassets */; };
 		B41496D3292808D2006DE3EC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B41496D2292808D2006DE3EC /* Preview Assets.xcassets */; };
+		B4580BB4292DA44F0094F725 /* OutLinedTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4580BB3292DA44F0094F725 /* OutLinedTextFieldStyle.swift */; };
+		B4B14F1A292F1C2900ADB7E3 /* SignUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B14F19292F1C2900ADB7E3 /* SignUpVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		B41496CD292808D1006DE3EC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B41496CF292808D2006DE3EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B41496D2292808D2006DE3EC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B4580BB3292DA44F0094F725 /* OutLinedTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutLinedTextFieldStyle.swift; sourceTree = "<group>"; };
+		B4B14F19292F1C2900ADB7E3 /* SignUpVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +55,13 @@
 		B41496CA292808D1006DE3EC /* Shrine App */ = {
 			isa = PBXGroup;
 			children = (
+				B4B14F18292F191300ADB7E3 /* View */,
+				B4B14F17292F18EF00ADB7E3 /* ViewMoodel */,
 				B41496CB292808D1006DE3EC /* Shrine_AppApp.swift */,
 				B41496CD292808D1006DE3EC /* ContentView.swift */,
 				B41496CF292808D2006DE3EC /* Assets.xcassets */,
 				B41496D1292808D2006DE3EC /* Preview Content */,
+				B4580BB3292DA44F0094F725 /* OutLinedTextFieldStyle.swift */,
 			);
 			path = "Shrine App";
 			sourceTree = "<group>";
@@ -65,6 +72,21 @@
 				B41496D2292808D2006DE3EC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B4B14F17292F18EF00ADB7E3 /* ViewMoodel */ = {
+			isa = PBXGroup;
+			children = (
+				B4B14F19292F1C2900ADB7E3 /* SignUpVM.swift */,
+			);
+			path = ViewMoodel;
+			sourceTree = "<group>";
+		};
+		B4B14F18292F191300ADB7E3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +160,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B41496CE292808D1006DE3EC /* ContentView.swift in Sources */,
+				B4580BB4292DA44F0094F725 /* OutLinedTextFieldStyle.swift in Sources */,
+				B4B14F1A292F1C2900ADB7E3 /* SignUpVM.swift in Sources */,
 				B41496CC292808D1006DE3EC /* Shrine_AppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
